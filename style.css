@@ -76,7 +76,7 @@ h1, h2, h3 { line-height: 1.2; font-weight: 700; }
 
 .btn-secondary {
     background-color: transparent;
-    color: white;
+    color: var(--text-main);
     border: 1px solid var(--border-color);
 }
 .btn-secondary:hover {
