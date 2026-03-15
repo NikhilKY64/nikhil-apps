@@ -65,6 +65,15 @@ body.light-mode .nav-links a:hover {
     color: #0f172a;
 }
 
+/* Active Link State */
+.nav-links a.active {
+    color: #3b82f6; /* primary color */
+    font-weight: 700;
+}
+body.light-mode .nav-links a.active {
+    color: #2563eb; /* primary hover color for light mode */
+}
+
 /* Theme Switch */
 .switch {
   font-size: 14px; /* Scaled down slightly to fit navbar gracefully */

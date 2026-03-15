@@ -65,4 +65,46 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', 'dark');
         }
     });
+
+    // Highlight Active Link Logic
+    const navLinksList = document.querySelectorAll('.nav-links a');
+    
+    function highlightActiveLink() {
+        if (!isSubPage) {
+            // Main page scrollspy
+            const sections = document.querySelectorAll('header#about, section#portfolio, footer#contact');
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinksList.forEach(link => {
+                link.classList.remove('active');
+                if (current && link.getAttribute('href').includes(`#${current}`)) {
+                    link.classList.add('active');
+                }
+            });
+        } else {
+            // App sub-page: highlight 'Apps' as they are currently inside an app context
+            navLinksList.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes('#portfolio')) {
+                    link.classList.add('active');
+                }
+            });
+        }
+    }
+    
+    // Initial call
+    highlightActiveLink();
+    
+    // Listen for scroll only if on main page
+    if (!isSubPage) {
+        window.addEventListener('scroll', highlightActiveLink);
+    }
 });
